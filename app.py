@@ -1,13 +1,13 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
 
 
 @app.route('/hello', methods=['POST'])
 def hello():
-    return 'Hello Iam ricky!'
+    name = request.form.get('name')
+
+    if name:
+        return f'Hello {name}!'
+    else:
+        return 'Hello weirdo!'
